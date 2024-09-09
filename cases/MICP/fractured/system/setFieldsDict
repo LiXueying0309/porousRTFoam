@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration    | Version:  7                                     |
+|   \\  /    A nd          | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      setFieldsDict;
+}
+
+// The field to set
+fields
+(
+    eps
+    MbbyMmax
+    Curea
+    Cca
+    Cco3
+    p
+);
+
+// Method of setting the field
+setFormat raw;
+
+// Set the STL file as the region to apply the field
+regions
+(   
+    boxToCell
+    {
+        box (0.004 0 3.79357e-06) (0.021 0.0079 2.37934e-05);
+        fieldValues
+        (
+           volScalarFieldValue eps 1
+           volScalarFieldValue MbbyMmax 0
+           volScalarFieldValue Curea 0.0001
+           volScalarFieldValue Cca 0.6
+           volScalarFieldValue Cco3 0
+           volScalarFieldValue p 0
+        );
+    }
+    
+    surfaceToCell
+    {
+        file "constant/triSurface/fracture.stl";
+        outsidePoints // definition of outside
+        (
+            (0.015 0.0002 4e-6)
+        ); 
+        includeCut false; // cells cut by surface
+        includeInside yes; // cells not on outside of surf
+        includeOutside no; // cells on outside of surf
+        nearDistance -1; // cells with centre near surf
+        curvature 0.9; // cells within nearDistance
+        fieldValues
+        (
+            volScalarFieldValue eps 0.0001
+            volScalarFieldValue Curea 0.0001
+            volScalarFieldValue MbbyMmax 0.0001
+        );
+    }
+    
+    surfaceToCell
+    {
+        file "constant/triSurface/preCut.stl";
+        outsidePoints // definition of outside
+        (
+            (0.015 0.0002 4e-6)
+        ); 
+        includeCut false; // cells cut by surface
+        includeInside yes; // cells not on outside of surf
+        includeOutside no; // cells on outside of surf
+        nearDistance -1; // cells with centre near surf
+        curvature 0.9; // cells within nearDistance
+        fieldValues
+        (
+            volScalarFieldValue Curea 0.6
+            volScalarFieldValue MbbyMmax 0.3
+            volScalarFieldValue eps 0.0001
+        );
+    }
+    
+);
+
+// Default value for points not inside the set region
+defaultValue uniform (0 0 0);
+
+// Method of interpolating values for points not inside the set region
+interpolationScheme cell;
+
+// Write output to time directories
+writeControl timeStep;
+
+
+
+// ************************************************************************* //

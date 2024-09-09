@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -rf [0-9]*
+
+rm -rf constant/polyMesh
+
+rm -rf postProcessing
+
+rm -rf processor*

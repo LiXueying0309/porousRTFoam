@@ -1,0 +1,164 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     7;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    p
+    {
+        solver          GAMG;
+        tolerance       1e-10;
+        relTol          0.05;
+        smoother        GaussSeidel;
+    }
+	Cca
+    {
+        solver          GAMG;
+        tolerance       1e-10;
+        relTol          0.05;
+        smoother        GaussSeidel;
+    }
+	Cna
+    {
+        solver          GAMG;
+        tolerance       1e-100;
+        relTol          0.05;
+        smoother        GaussSeidel;
+    }   
+	Ccl
+    {
+        solver          GAMG;
+        tolerance       1e-10;
+        relTol          0.05;
+        smoother        GaussSeidel;
+    } 
+	Cco3
+    {
+        solver          GAMG;
+        tolerance       1e-10;
+        relTol          0.05;
+        smoother        GaussSeidel;
+    } 
+	Ch
+    {
+        solver          GAMG;
+        tolerance       1e-10;
+        relTol          0.05;
+        smoother        GaussSeidel;
+    }
+	Ccaco3
+	{
+		solver			GAMG;
+		tolerance		1e-10;
+		relTol			0.05;
+		smoother		GaussSeidel;
+	}
+	"(U|k|epsilon|omega|f|v2)"
+    {
+        solver          GAMG;
+        smoother        GaussSeidel;
+        tolerance       1e-10;
+        relTol          0.1;
+    }
+	eps
+	{
+		solver			GAMG;
+		smoother		GaussSeidel;
+		tolerance		1e-10;
+		relTol			0;
+	}
+	pFinal
+	{
+		$p;
+		tolerance		1e-10;
+		relTol			0;
+	}
+	UFinal
+	{
+		$U;
+		tolerance		1e-10;
+		relTol			0;
+	}
+	CcaFinal
+	{
+		$Cca;
+		tolerance		1e-10;
+		relTol			0;
+	}
+	CnaFinal
+	{
+		$Cna;
+		tolerance		1e-10;
+		relTol			0;
+	}
+	CclFinal
+	{
+		$Ccl;
+		tolerance		1e-10;
+		relTol			0;
+	}
+	Cco3Final
+	{
+		$Cco3;
+		tolerance		1e-10;
+		relTol			0;
+	}
+	ChFinal
+	{
+		$Ch;
+		tolerance		1e-10;
+		relTol			0;
+	}
+	Ccaco3Final
+	{
+		$Ccaco3;
+		tolerance		1e-10;
+		relTol			0;
+	}
+	epsFinal
+	{
+		$eps;
+		tolerance		1e-10;
+		relTol			0;
+	}
+}
+
+PISO
+{
+    momentumPredictor	yes;
+	nCorrectors 2;
+	nNonOrthogonalCorrectors 0;
+    //consistent      yes;
+	pRefCell 0;
+	pRefValue 0;
+
+    residualControl
+    {
+        p               1e-10;
+        U               1e-10;
+    }
+}
+
+relaxationFactors
+{
+    equations
+    {
+        U               0.9; // 0.9 is more stable but 0.95 more convergent
+    }
+}
+
+
+// ************************************************************************* //

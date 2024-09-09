@@ -1,0 +1,111 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    p
+    {
+        solver          GAMG;
+        tolerance       1e-06;
+        relTol          0.1;
+        smoother        GaussSeidel;
+    }
+
+    eps
+    {
+        solver          GAMG;
+        tolerance       1e-06;
+        relTol          0.1;
+        smoother        GaussSeidel;
+    }
+
+/*  
+
+C
+    {
+        solver          GAMG;
+        tolerance       1e-06;
+        relTol          0.1;
+        smoother        GaussSeidel;
+    }
+
+Mb
+    {
+        solver          GAMG;
+        tolerance       1e-06;
+        relTol          0.1;
+        smoother        GaussSeidel;
+    }*/
+CbyC0
+  {
+        solver          GAMG;
+        tolerance       1e-06;
+        relTol          0.1;
+        smoother        GaussSeidel;
+    }
+
+MbbyMmax
+  {
+        solver          GAMG;
+        tolerance       1e-06;
+        relTol          0.1;
+        smoother        GaussSeidel;
+    }
+
+    pFinal
+    {
+        $p;
+        tolerance       1e-06;
+        relTol          0;
+    }
+
+CbyC0Final
+{
+        $CbyC0;
+        tolerance       1e-06;
+        relTol          0;
+    }
+MbbyMmaxFinal
+{
+        $MbbyMmaxFinal;
+        tolerance       1e-06;
+        relTol          0;
+        solver          GAMG;
+        smoother        GaussSeidel;
+    }
+
+
+    "(U|k|epsilon|omega|R|nuTilda)"
+    {
+        solver          smoothSolver;
+        smoother        GaussSeidel;
+        tolerance       1e-05;
+        relTol          0;
+    }
+}
+
+PISO
+{
+    momentumPredictor   yes;
+    nCorrectors     2;
+    nNonOrthogonalCorrectors 0;
+    pRefCell        0;
+    pRefValue       0;
+}
+
+
+// ************************************************************************* //
