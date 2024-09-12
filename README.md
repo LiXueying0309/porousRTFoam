@@ -11,7 +11,10 @@ porousRTFoam is an open-source software developed to simulate hydro-bio-geochemi
 ### 2. Installation
 All the solvers in porousRTFoam were been developed on OpenFOAM v7. Before installation, users should ensure OpenFOAM v7 is properly installed in the environment.
 If the system has multi OpenFOAM versions, users should first source the environment to v7:
+
 ```source /the path where you install openfoam/openfoamv7/etc/bashrc```
+
 Then enter each folders in solvers and run ```wmake``` to install the solvers.
+
 Please note that additional libraries that are not included in the standard OpenFOAM user directory are required.
 
