@@ -1,11 +1,11 @@
 # porousRTFoam
 porousRTFoam is an open-source software developed to simulate hydro-bio-geochemical processes in porous media using the well-known CFD platform OpenFOAM®. The software contains all OpenFOAM® functions, which makes it possible to solve the Darcy-Brinkman-Stokes equation together with other partial differential equations using the finite-volume method and support parallel computing. 
-![figure2](https://github.com/user-attachments/assets/34afb48a-de04-4e6c-851d-c3171b7e1448)
+![figure2](https://github.com/porousRTFoam/figure2.png)
 
 
 ### 1. Organization of porousRTFoam
 1. solvers: porousRTFoam is consist of dbsFoam, dbscFoam, dissolFoam, precipFoam, and bioFoam. 
-![figure3](https://github.com/user-attachments/assets/952db873-d567-49ea-a931-d81d7e5dbabb)
+![figure3](https://github.com/porousRTFoam/figure3.png)
 2. cases: four kinds of test cases is shown in this release. The names of the folders are Flow_Solute_Transport, Reactive_Transport, Biofilm, and MICP.
 
 ### 2. Installation
