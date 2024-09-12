@@ -15,7 +15,7 @@ Four test cases are provided, located in the following folders: ```Flow_Solute_T
 ### 2. Installation
 The solvers were developed on OpenFOAM v7. Ensure OpenFOAM v7 is installed before proceeding. If multiple OpenFOAM versions are present, source the v7 environment with:
 
-```source /the path where you install openfoam/openfoamv7/etc/bashrc```
+```source /path/to/openfoamv7/etc/bashrc```
 
 To install the solvers, navigate to each ```folder``` in solvers and run:
 
