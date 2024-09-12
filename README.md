@@ -1,20 +1,25 @@
 # porousRTFoam
-porousRTFoam is an open-source software developed to simulate hydro-bio-geochemical processes in porous media using the well-known CFD platform OpenFOAM®. The software contains all OpenFOAM® functions, which makes it possible to solve the Darcy-Brinkman-Stokes equation together with other partial differential equations using the finite-volume method and support parallel computing. 
+**porousRTFoam** is an open-source software designed to simulate hydro-bio-geochemical processes in porous media using the CFD platform OpenFOAM®. It leverages all OpenFOAM® functionalities, allowing the finite-volume solution of the Darcy-Brinkman-Stokes equation alongside other partial differential equations, with support for parallel computing. 
 ![figure2](./figure2.png)
 
 
-### 1. Organization of porousRTFoam
-1. solvers: porousRTFoam is consist of dbsFoam, dbscFoam, dissolFoam, precipFoam, and bioFoam. 
+### 1. Structure of porousRTFoam
+1. **solvers**:
+
+porousRTFoam includes the following solvers: ```dbsFoam```, ```dbscFoam```, ```dissolFoam```, ```precipFoam```, and ```bioFoam```. 
 ![figure3](./figure3.png)
-2. cases: four kinds of test cases is shown in this release. The names of the folders are Flow_Solute_Transport, Reactive_Transport, Biofilm, and MICP.
+2. **cases**: 
+
+Four test cases are provided, located in the following folders: ```Flow_Solute_Transport```, ```Reactive_Transport```, ```Biofilm```, and ```MICP```.
 
 ### 2. Installation
-All the solvers in porousRTFoam were been developed on OpenFOAM v7. Before installation, users should ensure OpenFOAM v7 is properly installed in the environment.
-If the system has multi OpenFOAM versions, users should first source the environment to v7:
+The solvers were developed on OpenFOAM v7. Ensure OpenFOAM v7 is installed before proceeding. If multiple OpenFOAM versions are present, source the v7 environment with:
 
 ```source /the path where you install openfoam/openfoamv7/etc/bashrc```
 
-Then enter each folders in solvers and run ```wmake``` to install the solvers.
+To install the solvers, navigate to each ```folder``` in solvers and run:
 
-Please note that additional libraries that are not included in the standard OpenFOAM user directory are required.
+```wmake```
+
+Please note that additional libraries, not included in the standard OpenFOAM installation, are required.
 
